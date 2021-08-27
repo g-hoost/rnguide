@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View, FlatList } from 'react-native';
+import GoalItem from './componenets/GoalItem';
 
 export default function App()
 {
@@ -27,12 +28,10 @@ export default function App()
         <Button title="ADD" onPress={addGoalHandler} />
       </View>
       <FlatList
+        keyExtractor={(item, index) => item.key}
         data={courseGoals}
-        renderItem={itemData =>
-          <View style={styles.toDoList} key={1}>
-            <Text style={styles.listText}>{itemData.item.value}</Text>
-          </View>
-        } />
+        renderItem={itemData => <GoalItem title={itemData.item.value} />}
+      />
     </View>
   );
 }
@@ -53,14 +52,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
     fontSize: 16
-  },
-  toDoList: {
-    padding: 10,
-    marginVertical: 10,
-    backgroundColor: 'lightpink',
-    borderColor: 'black',
-    borderRadius: 5,
-    borderWidth: 1
   },
   textContainer2: {
     marginVertical: 20
