@@ -5,7 +5,7 @@ import GoalInput from './componenets/GoalInput';
 
 export default function App()
 {
-  const [enteredGoal, setEnteredGoal] = useState('');
+  // const [enteredGoal, setEnteredGoal] = useState('');
   const [courseGoals, setCourseGoals] = useState([]);
 
 
@@ -13,6 +13,14 @@ export default function App()
   const addGoalHandler = goalTitle =>
   {
     setCourseGoals(currentGoals => [...currentGoals, { key: Math.random().toString(), value: goalTitle }]);
+  }
+
+  const removeGoalHandler = goalId =>
+  {
+    setCourseGoals(currentGoals =>
+    {
+      return currentGoals.filter((goal) => goal.id !== goalId);
+    });
   }
 
   return (
